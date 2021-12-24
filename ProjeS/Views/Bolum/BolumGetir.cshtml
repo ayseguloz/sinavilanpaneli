@@ -1,0 +1,23 @@
+﻿@model ProjeS.Models.Bolums
+@{
+    ViewBag.Title = "BolumGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Bölüm Güncelleme</h2>
+@using (Html.BeginForm("BolumGuncelle", "Bolum", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.BolumId)
+        @Html.LabelFor(x => x.BolumAdi)
+        @Html.TextBoxFor(x => x.BolumAdi, new { @class = "form-control" })
+
+
+        <br />
+        @Html.LabelFor(Model => Model.aktiflik)
+        @Html.DropDownListFor(Model => Model.aktiflik, (List<SelectListItem>)ViewBag.AktiflikBilgisi, new { @class = "form-control" })
+        <br />
+        <br />
+    </div>
+    <button class="btn btn-warning">Güncelle</button>
+}

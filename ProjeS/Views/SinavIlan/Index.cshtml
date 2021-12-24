@@ -1,0 +1,73 @@
+﻿@model List<ProjeS.Models.Sinavİlan>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    ProjeS.Models.SinavİlanEntities2 data = new ProjeS.Models.SinavİlanEntities2();
+
+}
+
+<h2>Sınav İlan Paneli</h2>
+
+
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+
+
+        <th>Ders Adı</th>
+        <th>Bölüm Adı</th>
+        <th>Salon Adı</th>
+        <th>Tarih</th>
+        <th>Saat</th>
+        <th>Açıklama</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+
+    </tr>
+    @try
+    {
+        foreach (var k in Model)
+        {
+
+<tr>
+
+    <td>
+        @k.Ders.DersAdi
+        @* @data.Ders.Where(s => s.DersId == k.DersId).FirstOrDefault().DersAdi*@
+    </td>
+    <td>
+        @k.Ders.Bolums.BolumAdi
+    </td>
+    <td>
+        @k.Salons.salonAdi
+        @*  @data.Salons.Where(s => s.salonId == k.salonId).ToList()[0].salonAdi*@
+    </td>
+    <td>
+        @k.tarih
+    </td>
+    <td>
+        @k.Saats.saat
+        @* @data.Saats.Where(s => s.saatId == k.saatId).FirstOrDefault().saat*@
+    </td>
+    <td>
+        @k.aciklama
+        @* @data.Saats.Where(s => s.saatId == k.saatId).FirstOrDefault().saat*@
+    </td>
+    <td><a href="/SinavIlan/IlanSil/@k.SinavIlanNo" class="btn btn-danger">Sil</a></td>
+    <td><a href="/SinavIlan/IlanGuncelle/@k.SinavIlanNo" class=" btn btn-success">Güncelle</a></td>
+</tr>
+        }
+    }
+    catch (Exception e)
+    {
+
+        
+    }
+</table>
+
+<a href="/SinavIlan/IlanEkle" class="btn btn-primary">Sınav İlanı Ekle</a>
+
+
+
+
+

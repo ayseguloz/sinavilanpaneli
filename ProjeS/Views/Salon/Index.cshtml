@@ -1,0 +1,35 @@
+﻿@model List<ProjeS.Models.Salons>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    ProjeS.Models.SinavİlanEntities data = new ProjeS.Models.SinavİlanEntities();
+}
+
+<h2>Salonlar</h2>
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+
+
+        <th>Salon Adı</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var k in Model)
+    {
+
+        <tr>
+
+            <td>
+                @k.salonAdi
+            </td>
+
+
+
+            <td><a href="/Salon/SalonSil/@k.salonId" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Salon/SalonGetir/@k.salonId" class=" btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/Salon/SalonEkle" class="btn btn-primary">Salon Adı Ekle</a>
+

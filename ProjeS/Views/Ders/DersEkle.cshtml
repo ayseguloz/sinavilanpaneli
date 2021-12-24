@@ -1,0 +1,32 @@
+﻿@model ProjeS.Models.Ders
+   
+@{
+    ViewBag.Title = "DersEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    ProjeS.Models.SinavİlanEntities data = new ProjeS.Models.SinavİlanEntities();
+
+}
+
+<br />
+<h2>Yeni Ders Ekle</h2>
+<br />
+<form class="form-group" method="post">
+    @Html.HiddenFor(Model => Model.DersId)
+    @Html.LabelFor(Model => Model.DersAdi)
+    @Html.TextBoxFor(Model => Model.DersAdi, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(Model => Model.Bolums.BolumAdi)
+    @Html.DropDownListFor(Model => Model.BolumId, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+
+    <br />
+    @Html.LabelFor(Model => Model.aktiflik)
+    @Html.DropDownListFor(Model => Model.aktiflik, (List<SelectListItem>)ViewBag.AktiflikBilgisi, new { @class = "form-control" })
+    <br />
+
+
+
+    <button class="btn btn-info">Kaydet</button>
+
+</form>
+

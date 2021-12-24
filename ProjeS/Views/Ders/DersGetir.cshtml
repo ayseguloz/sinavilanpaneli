@@ -1,0 +1,25 @@
+﻿@model ProjeS.Models.Ders
+@{
+    ViewBag.Title = "DersGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Ders Güncelleme</h2>
+@using (Html.BeginForm("DersGuncelle", "Ders", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.HiddenFor(Model => Model.DersId)
+    @Html.LabelFor(Model => Model.DersId)
+    @Html.TextBoxFor(Model => Model.DersAdi, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(Model => Model.BolumId)
+    @Html.DropDownListFor(Model => Model.BolumId, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+
+    @Html.LabelFor(Model => Model.aktiflik)
+    @Html.DropDownListFor(Model => Model.aktiflik, (List<SelectListItem>)ViewBag.AktiflikBilgisi, new { @class = "form-control" })
+    <br />
+    <br />
+</div>
+    <button class="btn btn-warning">Güncelle</button>
+}
+

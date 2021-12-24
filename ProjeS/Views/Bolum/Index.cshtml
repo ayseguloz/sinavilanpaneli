@@ -1,0 +1,37 @@
+﻿@model List<ProjeS.Models.Bolums>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+
+    ProjeS.Models.SinavİlanEntities data = new ProjeS.Models.SinavİlanEntities();
+}
+
+
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+
+
+        <th>Bölüm Adı</th>
+
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var k in Model)
+    {
+
+        <tr>
+
+            <td>
+                @k.BolumAdi
+            </td>
+
+
+
+
+            <td><a href="/Bolum/BolumSil/@k.BolumId" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Bolum/BolumGetir/@k.BolumId" class=" btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/Bolum/BolumEkle" class="btn btn-primary">Bölüm Ekle</a>

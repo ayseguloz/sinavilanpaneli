@@ -1,0 +1,68 @@
+﻿@model ProjeS.Models.Sinavİlan
+
+@{
+    ViewBag.Title = "IlanGuncelle";
+    ProjeS.Models.SinavİlanEntities2 data = new ProjeS.Models.SinavİlanEntities2();
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    string id = ViewBag.gelen;
+}
+
+<h2>IlanGuncelle</h2>
+
+
+@using (Html.BeginForm("IlanGuncelle_gelen", "SinavIlan", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Sinavİlan</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.SinavIlanNo)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.tarih, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tarih, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.tarih, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DersId, "DersId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("DersId", (from x in data.Ders.ToList() select new SelectListItem { Text = x.DersAdi, Value = x.DersId.ToString() }), htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DersId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.sinifId, "sinifId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("sinifId", (from x in data.Salons.ToList() select new SelectListItem { Text = x.salonAdi, Value = x.salonId.ToString() }), htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.sinifId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.saatId, "saatId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("saatId", (from x in data.Saats.ToList() select new SelectListItem { Text = x.saat, Value = x.saatId.ToString() }), htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.saatId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.aciklama, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.aciklama, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.aciklama, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <button class="btn btn-warning">Güncelle</button>
+</div>
+}

@@ -1,0 +1,20 @@
+﻿@model ProjeS.Models.Salons
+
+@{
+    ViewBag.Title = "SalonGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Bölüm Güncelleme</h2>
+@using (Html.BeginForm("SalonGuncelle", "Salon", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.salonId)
+        @Html.LabelFor(x => x.salonAdi)
+        @Html.TextBoxFor(x => x.salonAdi, new { @class = "form-control" })
+
+
+    </div>
+    
+    <button class="btn btn-warning">Güncelle</button>
+}

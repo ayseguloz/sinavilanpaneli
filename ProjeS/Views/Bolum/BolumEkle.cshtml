@@ -1,0 +1,24 @@
+﻿@model  ProjeS.Models.Bolums
+
+@{
+    ViewBag.Title = "BolumEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Bölüm Ekle</h2>
+<br />
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.BolumAdi)
+    @Html.TextBoxFor(x => x.BolumAdi, new { @class = "form-control" })
+
+    <br />
+    @Html.LabelFor(Model => Model.aktiflik)
+    @Html.DropDownListFor(Model => Model.aktiflik, (List<SelectListItem>)ViewBag.AktiflikBilgisi, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+
+</form>
+
+
+
+

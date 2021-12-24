@@ -1,0 +1,92 @@
+﻿@model ProjeS.Models.Sinavİlan
+@{
+    ViewBag.Title = "IlanEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Sınav İlanı Ekle</h2>
+<br />
+
+
+<form class="form-group" method="post">
+    @Html.HiddenFor(Model => Model.SinavIlanNo)
+        @Html.LabelFor(Model => Model.Ders.DersAdi)
+        @Html.DropDownListFor(Model => Model.DersId, (List<SelectListItem>)ViewBag.dgr4, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(Model => Model.Ders.BolumId)
+        @Html.DropDownListFor(Model => Model.Ders.BolumId, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+
+    @*@Html.LabelFor(Model => Model.Ders.Bolums.BolumAdi)
+    @Html.DropDownListFor(model => model.bolumID, (List<SelectListItem>)ViewBag.dgr2, new { @id = "DrpUst", @class = "form-control" })
+
+    <br />
+    @Html.HiddenFor(Model => Model.SinavIlanNo)
+    @Html.LabelFor(Model => Model.Ders.DersAdi)
+    @Html.DropDownListFor(model => model.DersId, (List<SelectListItem>)ViewBag.dgr4, new { @id = "DrpAlt", @class = "form-control" })
+    <br />*@
+
+    @Html.LabelFor(Model => Model.Salons.salonAdi)
+    @Html.DropDownListFor(Model => Model.salonId, (List<SelectListItem>)ViewBag.dgr5, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(Model => Model.Saats.saat)
+    @Html.DropDownListFor(Model => Model.saatId, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(Model => Model.tarih)
+    <br />
+    @Html.TextBoxFor(model => model.tarih, "{0:d}", new { type = "date", @class = "form-control" })
+    @*@Html.TextBoxFor(Model => Model.tarih, "{0:yyyy-mm-dd}" ,new { @class = "form-control date-picker" })*@
+
+    <br />
+    
+    @Html.LabelFor(Model => Model.aciklama)
+    @Html.TextBoxFor(Model => Model.aciklama , new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+
+    @*@section script
+        {
+            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+            <script >
+                $(document).ready(function () {
+                    $("BolumId").change(function () {
+
+                        $("#BolumId").change(function () {
+                            $.get("/SinavIlan/GetStateList", { CountryId: $("#BolumId").val() }, function (data) {
+                                $("#DersId").empty();
+                                $.each(data, function (index, row) {
+                                    $("#DersId").append("<option value='" + row.StateId + "'>" + row.StateName + "</option>")
+                                });
+                            });
+
+                        });
+                    }));
+
+
+
+            </script>*@
+
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+            $('#DrpUst').change(function () {
+                var id = $('#DrpUst').val();
+                $.ajax({
+                    url: '/SinavIlan/altKateGetir',
+                    data: { p: id },
+                    type: "POST",
+                    dataType: "Json",
+                    success: function (data) {
+                        console.log(data);
+                        $('#DrpAlt').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $('#DrpAlt').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                        }
+                    }
+                });
+            });
+        });
+    </script>*@
+
+
+
